@@ -1,5 +1,6 @@
 import json
 import os
+from pyexpat import model
 from turtle import mode
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -36,16 +37,18 @@ def get_api_key(model_name="deepseek-chat"):
     else:
         return os.getenv("GPT_API_KEY")
 
+model_name = "gpt-4o"
+
 def create_openai_client():
-    client = OpenAI(api_key=get_api_key(),base_url="https://api.deepseek.com")
-    # client = OpenAI(api_key=get_api_key(),base_url="https://api.gptapi.us/v1")
+    # client = OpenAI(api_key=get_api_key(),base_url="https://api.deepseek.com")
+    client = OpenAI(api_key=get_api_key(model_name),base_url="https://api.gptapi.us/v1")
     return client
 
 
 
 def send_message(messages):
     response = client.chat.completions.create(
-        model="deepseek-chat",
+        model=model_name,
         messages=messages,
         tools=tools,
     )
