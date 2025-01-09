@@ -1,3 +1,4 @@
+import json
 import os
 from turtle import mode
 from dotenv import load_dotenv
@@ -44,7 +45,7 @@ def create_openai_client():
 
 def send_message(messages):
     response = client.chat.completions.create(
-        model='deepseek-chat',
+        model="deepseek-chat",
         messages=messages,
         tools=tools,
     )
