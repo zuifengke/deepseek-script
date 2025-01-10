@@ -69,4 +69,6 @@ if __name__ =='__main__':
             weather_info = get_weather(location)
             messages.append({"role": "tool", "tool_call_id": tool.id, "content": weather_info})
             message = send_message(messages)
+            messages.append(message)
             print(message)
+    print(messages)
