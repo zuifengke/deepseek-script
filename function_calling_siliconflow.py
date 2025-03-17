@@ -33,7 +33,7 @@ def get_weather(location):
     return  "{'温度':'25°C', '湿度':'80%','天气':'多云'}"
 
 def get_api_key(model_name="deepseek-ai/DeepSeek-V3"):
-    if model_name == "deepseek-chat" or model_name == "deepseek-rea":
+    if model_name == "deepseek-chat" or model_name == "deepseek-reasoner":
         return os.getenv("DEEPSEEK_API_KEY")
     elif(model_name == "deepseek-ai/DeepSeek-V3"):
         return 'sk-nmhcrymaktgoupxtlfufbomowoohjsnfzrhkpbcejdjutgos'
