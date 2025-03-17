@@ -30,7 +30,7 @@ tools = [
 ]
 
 def get_weather(location):
-    return f"{location} 的天气预报如下：晴天，气温 32摄氏度."
+    return  "{'温度':'25°C', '湿度':'80%','天气':'多云'}"
 
 def get_api_key(model_name="deepseek-ai/DeepSeek-V3"):
     if model_name == "deepseek-chat" or model_name == "deepseek-rea":
@@ -76,7 +76,7 @@ if __name__ =='__main__':
         function_name = message.tool_calls[0].function.name
         if(function_name == "get_weather"):
             # weather_info = get_weather(location)
-            weather_info="{'温度':'25°C', '湿度':'80%','天气':'多云'}"
+            weather_info = "{'温度':'25°C', '湿度':'80%','天气':'多云'}"
             # 将 weather_info 转换为 JSON 字符串
            # weather_info_str = json.dumps(weather_info, ensure_ascii=False)
             messages.append({"role": "tool", "tool_call_id": tool.id, "content": weather_info})

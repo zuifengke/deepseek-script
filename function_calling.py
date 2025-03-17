@@ -33,7 +33,7 @@ def get_weather(location):
     return f"{location} 的天气预报如下：晴天，气温 32摄氏度."
 
 def get_api_key(model_name="deepseek-chat"):
-    if(model_name == "deepseek-chat"  or model_name == "deepseek-rea"):
+    if(model_name == "deepseek-chat"  or model_name == "deepseek-reasoner"):
         return os.getenv("DEEPSEEK_API_KEY")
     else:
         return os.getenv("GPT_API_KEY")
