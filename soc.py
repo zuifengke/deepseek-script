@@ -111,13 +111,13 @@ function_name = tool.function.name
 arguments = json.loads(tool.function.arguments)
 print(f"Model>\t function_name:{function_name},arguments:{arguments}")
 
-# if(function_name == 'multiply'):
-#     a = arguments['a']
-#     b = arguments['b']
-#     result = multiply(a, b)
-#     print(f"function>\t result:{result}")
-#     messages.append({"role": "tool", "tool_call_id": tool.id, "content": json.dumps({"result": result})})
-#     # print(messages)
-#     message = send_messages(messages)
-#     print(f"Model>\t {message.content}")
+if(function_name == 'multiply'):
+    a = arguments['a']
+    b = arguments['b']
+    result = multiply(a, b)
+    print(f"function>\t result:{result}")
+    messages.append({"role": "tool", "tool_call_id": tool.id, "content": json.dumps({"result": result})})
+    # print(messages)
+    message = send_messages(messages)
+    print(f"Model>\t {message.content}")
 

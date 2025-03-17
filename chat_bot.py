@@ -36,6 +36,7 @@ def create_chatbot():
             stream = client.chat.completions.create(
                 model="deepseek-chat",
                 messages=messages,
+
                 stream=True,
             )
 
