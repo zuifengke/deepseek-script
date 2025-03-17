@@ -1,16 +1,18 @@
 from openai import OpenAI
 
+#model_name='deepseek-reasoner'
+model_name='deepseek-chat'
 def send_messages(messages, use_tools = False):
     if use_tools:
         response = client.chat.completions.create(
-            model="deepseek-chat",
+            model=model_name,
             messages=messages,
             tools=tools
         )
         return response.choices[0].message
     else:
         response = client.chat.completions.create(
-            model="deepseek-chat",
+            model=model_name,
             messages=messages
         )
         return response.choices[0].message
@@ -25,13 +27,13 @@ tools = [
         "type": "function",
         "function": {
             "name": "get_weather",
-            "description": "Get weather of an location, the user shoud supply a location first",
+            "description": "根据城市名称获取天气信息",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "location": {
                         "type": "string",
-                        "description": "The city and state, e.g. San Francisco, CA",
+                        "description": "城市名称，例如：上海、北京、深圳等",
                     }
                 },
                 "required": ["location"]
@@ -40,13 +42,13 @@ tools = [
     },
 ]
 
-messages = [{"role": "user", "content": "How's the weather in Hangzhou?"}]
+messages = [{"role": "user", "content": "杭州的天气如何?"}]
 message = send_messages(messages,True)
 print(f"User>\t {messages[0]['content']}")
 
 tool = message.tool_calls[0]
 messages.append(message)
 
-messages.append({"role": "tool", "tool_call_id": tool.id, "content": "24℃"})
+messages.append({"role": "tool", "tool_call_id": tool.id, "content": "{'温度':'25°C', '湿度':'80%','天气':'多云'}"})
 message = send_messages(messages)
 print(f"Model>\t {message.content}")
